@@ -30,8 +30,8 @@ if (typeof document !== "undefined") {
 
   // MutationObserver for automatic cleanup
   const observer = new MutationObserver((mutations) => {
-    const nodes = mutations.flatMap(
-      ({ removedNodes }) => [...removedNodes] as HTMLElement[]
+    const nodes = mutations.flatMap(({ removedNodes }) =>
+      Array.from(removedNodes).filter((node) => node instanceof HTMLElement),
     );
 
     for (const node of nodes)
